@@ -21,6 +21,6 @@ public:
     void generateNodes();
     void connectNodes() const;
     void print() const;
-    bool isColored() const;
+    NODISCARD bool isColored() const;
     static void printPalette();
 };
