@@ -12,8 +12,8 @@ std::vector<Node *> australia();
 std::vector<Node *> france();
 
 int main() {
-    // const auto graph = new Graph(france());
-    const auto graph = new Graph(SIZE, MIN_NEIGHBORS, MAX_NEIGHBORS);
+    const auto graph = new Graph(france());
+    // const auto graph = new Graph(SIZE, MIN_NEIGHBORS, MAX_NEIGHBORS);
     AlgorithmABC::setColony(ONLOOKERS, SCOUTS, graph);
     AlgorithmABC::colorGraph();
     Graph::printPalette();

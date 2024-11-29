@@ -84,19 +84,19 @@ std::vector<double> AlgorithmABC::calculateProbabilityDistribution(const std::ve
 }
 
 void AlgorithmABC::colorNode(Node *node) {
-    int color = 0;
     const auto neighbors = node->getNeighbors();
-    bool conflict;
-    do {
-        conflict = false;
-        for (int i = 0; i < node->getNectar(); i++) {
-            if (neighbors[i]->getColor() == color) {
-                conflict = true;
-                color++;
-            }
+    std::vector colors(node->getNectar() + 1, true);
+    for (const auto neighbor : neighbors) {
+        if (neighbor->getColor() != -1) {
+            colors[neighbor->getColor()] = false;
         }
-    } while (conflict);
-    node->setColor(color);
+    }
+    for (int i = 0; i < node->getNectar() + 1; i++) {
+        if (colors[i]) {
+            node->setColor(i);
+            break;
+        }
+    }
 }
 
 void AlgorithmABC::colorNodeNeighbors(Node *node) {
